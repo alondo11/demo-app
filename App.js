@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import CounterButton from "./components/CounterButton";
 
 export default function App() {
+  const [counter, setCounter] = useState(0);
+
+  const handleIncrease = () => {
+    setCounter(counter + 1);
+  };
+
+  const handleDecrease = () => {
+    setCounter(counter - 1);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <CounterButton handlePress={handleDecrease} title="-" />
+      <Text style={styles.counterText}>{counter}</Text>
+      <CounterButton handlePress={handleIncrease} title="+" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  counterText: {
+    fontSize: 50,
   },
 });
